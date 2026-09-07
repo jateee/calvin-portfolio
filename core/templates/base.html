@@ -1,0 +1,355 @@
+{% load static %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+      content="Calvin Ochieng is a software developer in Kenya specializing in professional web development, Django applications, e-commerce websites and custom digital solutions.">
+
+<meta name="keywords"
+      content="Calvin Ochieng, software developer Kenya, web developer Kenya, Django developer Kenya, Python developer, e-commerce development, website development Kenya, custom web applications">
+
+<meta name="author"
+      content="Calvin Ochieng">
+
+<meta name="robots"
+      content="index, follow">
+
+<meta name="googlebot"
+      content="index, follow">
+
+<meta name="theme-color"
+      content="#08090d">
+
+<link rel="canonical"
+      href="{{ request.build_absolute_uri }}">
+
+<!-- Open Graph -->
+<meta property="og:type"
+      content="website">
+
+<meta property="og:title"
+      content="{% block og_title %}Calvin Ochieng | Software Developer in Kenya{% endblock %}">
+
+<meta property="og:description"
+      content="Professional web development, Django applications, e-commerce websites and custom digital solutions by Calvin Ochieng.">
+
+<meta property="og:url"
+      content="{{ request.build_absolute_uri }}">
+
+<meta property="og:site_name"
+      content="Calvin Ochieng">
+
+<!-- Twitter / X -->
+<meta name="twitter:card"
+      content="summary_large_image">
+
+<meta name="twitter:title"
+      content="{% block twitter_title %}Calvin Ochieng | Software Developer in Kenya{% endblock %}">
+
+<meta name="twitter:description"
+      content="Professional web development, Django applications, e-commerce websites and custom digital solutions by Calvin Ochieng.">
+
+<title>
+    {% block title %}
+    Calvin Ochieng | Software Developer in Kenya | Django & Web Development
+    {% endblock %}
+</title>
+
+<link rel="preconnect"
+      href="https://fonts.googleapis.com">
+
+<link rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+      rel="stylesheet">
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+<link rel="stylesheet"
+      href="{% static 'core/css/style.css' %}">
+
+{% block extra_css %}{% endblock %}
+
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-135FS7S2HL"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+
+    function gtag(){
+        dataLayer.push(arguments);
+    }
+
+    gtag('js', new Date());
+
+    gtag('config', 'G-135FS7S2HL');
+</script>
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+
+<div class="container nav-container">
+
+    <a href="{% url 'core:home' %}" class="logo">
+        <span class="logo-symbol">&lt;/&gt;</span>
+        <span>Calvin<span class="logo-dot">.</span></span>
+    </a>
+
+    <nav class="desktop-nav">
+
+        <a href="{% url 'core:home' %}">Home</a>
+        <a href="#services">Services</a>
+
+        <a href="{% url 'core:projects' %}" class="nav-cta">
+            Projects
+        </a>
+
+        <a href="{% url 'core:home' %}#about">About</a>
+        <a href="{% url 'core:home' %}#pricing">Rates</a>
+
+        <a href="{% url 'core:home' %}#contact" class="nav-contact">
+            Let's Talk
+            <i class="fa-solid fa-arrow-right"></i>
+        </a>
+
+    </nav>
+
+    <button class="mobile-menu-btn"
+            id="mobileMenuBtn"
+            aria-label="Open navigation menu"
+            aria-controls="mobileNav"
+            aria-expanded="false">
+
+        <i class="fa-solid fa-bars"></i>
+
+    </button>
+
+</div>
+
+<div class="mobile-nav" id="mobileNav">
+
+    <a href="{% url 'core:home' %}">Home</a>
+
+    <a href="{% url 'core:home' %}#services">
+        Services
+    </a>
+
+    <a href="{% url 'core:projects' %}" class="nav-cta">
+        Projects
+    </a>
+
+    <a href="{% url 'core:home' %}#about">
+        About
+    </a>
+
+    <a href="{% url 'core:home' %}#pricing">
+        Rates
+    </a>
+
+    <a href="{% url 'core:home' %}#contact">
+        Let's Talk
+    </a>
+
+</div>
+
+
+</header>
+
+<main>
+
+
+{% if messages %}
+
+<div class="messages-container">
+
+    {% for message in messages %}
+
+    <div class="site-message {{ message.tags }}">
+
+        <span>
+
+            {% if message.tags == "success" %}
+
+                <i class="fa-solid fa-circle-check"></i>
+
+            {% else %}
+
+                <i class="fa-solid fa-circle-exclamation"></i>
+
+            {% endif %}
+
+        </span>
+
+        <p>{{ message }}</p>
+
+        <button onclick="this.parentElement.remove()"
+                aria-label="Dismiss message">
+
+            <i class="fa-solid fa-xmark"></i>
+
+        </button>
+
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endif %}
+
+{% block content %}
+{% endblock %}
+
+
+</main>
+
+<footer class="site-footer">
+
+
+<div class="container footer-grid">
+
+    <div>
+
+        <a href="{% url 'core:home' %}"
+           class="logo footer-logo">
+
+            <span class="logo-symbol">&lt;/&gt;</span>
+
+            <span>
+                Calvin<span class="logo-dot">.</span>
+            </span>
+
+        </a>
+
+        <p class="footer-description">
+            Software developer building modern digital
+            experiences and practical web solutions.
+        </p>
+
+        <div class="social-links">
+
+            <a href="https://github.com/jateee"
+               target="_blank"
+               rel="noopener noreferrer"
+               aria-label="GitHub">
+
+                <i class="fa-brands fa-github"></i>
+
+            </a>
+
+            <a href="#"
+               aria-label="LinkedIn">
+
+                <i class="fa-brands fa-linkedin-in"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>Navigation</h4>
+
+        <a href="{% url 'core:home' %}">
+            Home
+        </a>
+
+        <a href="{% url 'core:home' %}#services">
+            Services
+        </a>
+
+        <a href="{% url 'core:projects' %}">
+            Projects
+        </a>
+
+        <a href="{% url 'core:home' %}#about">
+            About
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>Services</h4>
+
+        <a href="{% url 'core:home' %}#services">
+            Web Development
+        </a>
+
+        <a href="{% url 'core:home' %}#services">
+            E-Commerce
+        </a>
+
+        <a href="{% url 'core:home' %}#services">
+            Django Applications
+        </a>
+
+        <a href="{% url 'core:home' %}#services">
+            Website Maintenance
+        </a>
+
+    </div>
+
+
+    <div class="footer-column">
+
+        <h4>Let's Work</h4>
+
+        <p>
+            Have a project in mind?
+        </p>
+
+        <a href="{% url 'core:home' %}#contact"
+           class="footer-email">
+
+            Start a conversation
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</div>
+
+
+<div class="container footer-bottom">
+
+    <p>
+        © {% now "Y" %} Calvin Ochieng. All rights reserved.
+    </p>
+
+    <p>
+        Built with Django
+        <i class="fa-solid fa-heart"></i>
+    </p>
+
+</div>
+
+
+</footer>
+
+<script src="{% static 'core/js/main.js' %}"></script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,639 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ project.title }} | {{ project.category|default:"Web Development Project" }} | Calvin Ochieng
+{% endblock %}
+
+{% block og_title %}
+{{ project.title }} | {{ project.category|default:"Web Development Project" }} | Calvin Ochieng
+{% endblock %}
+
+{% block twitter_title %}
+{{ project.title }} | {{ project.category|default:"Web Development Project" }} | Calvin Ochieng
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     PROJECT HERO
+===================================================== -->
+
+<section class="project-detail-hero">
+
+
+<div class="container">
+
+    <a
+        href="{% url 'core:projects' %}"
+        class="back-link"
+        aria-label="Back to all projects"
+    >
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        All Projects
+
+    </a>
+
+
+    <div class="project-detail-heading">
+
+        <div>
+
+            <p class="section-label">
+
+                {% if project.category %}
+                    {{ project.category }}
+                {% else %}
+                    SOFTWARE PROJECT
+                {% endif %}
+
+            </p>
+
+
+            <h1>
+                {{ project.title }}
+            </h1>
+
+
+            <p class="project-detail-intro">
+                {{ project.short_description }}
+            </p>
+
+        </div>
+
+
+        <div class="project-detail-actions">
+
+            {% if project.live_url %}
+
+            <a
+                href="{{ project.live_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-primary"
+                aria-label="Visit {{ project.title }} live website"
+            >
+
+                Live Website
+
+                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+            </a>
+
+            {% endif %}
+
+
+            {% if project.github_url %}
+
+            <a
+                href="{{ project.github_url }}"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="btn btn-secondary"
+                aria-label="View {{ project.title }} source code on GitHub"
+            >
+
+                <i class="fa-brands fa-github"></i>
+
+                GitHub
+
+            </a>
+
+            {% endif %}
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     MAIN PROJECT IMAGE
+===================================================== -->
+
+<section class="project-main-image-section">
+
+
+<div class="container">
+
+    <div class="project-main-image">
+
+        {% if project.image %}
+
+        <img
+            src="{{ project.image.url }}"
+            alt="{{ project.title }} - {{ project.category|default:'Web Development Project' }} by Calvin Ochieng"
+        >
+
+        {% else %}
+
+        <div class="project-detail-placeholder">
+
+            <i class="fa-solid fa-code"></i>
+
+            <h2>
+                {{ project.title }}
+            </h2>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     PROJECT INFORMATION
+===================================================== -->
+
+<section class="section project-information">
+
+
+<div class="container project-information-grid">
+
+
+    <!-- =================================================
+         MAIN STORY
+    ================================================== -->
+
+    <div class="project-story">
+
+        <p class="section-label">
+            PROJECT OVERVIEW
+        </p>
+
+
+        <h2>
+            About the
+            <span>project.</span>
+        </h2>
+
+
+        <div class="project-description">
+
+            {{ project.description|linebreaks }}
+
+        </div>
+
+
+        <!-- PROJECT DETAILS -->
+
+        <div class="project-detail-stats">
+
+            <div class="project-detail-stat">
+
+                <span>
+                    Number of Pages
+                </span>
+
+                <strong>
+                    {{ project.pages }}
+                </strong>
+
+            </div>
+
+
+            {% if project.cost and project.show_cost %}
+
+            <div class="project-detail-stat">
+
+                <span>
+                    Cost
+                </span>
+
+                <strong>
+                    KSh {{ project.cost|floatformat:0 }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if project.duration %}
+
+            <div class="project-detail-stat">
+
+                <span>
+                    Development Time
+                </span>
+
+                <strong>
+                    {{ project.duration }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if project.role %}
+
+            <div class="project-detail-stat">
+
+                <span>
+                    My Role
+                </span>
+
+                <strong>
+                    {{ project.role }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- SOLUTION -->
+
+        {% if project.solution %}
+
+        <div class="project-story-block">
+
+            <p class="section-label">
+                THE SOLUTION
+            </p>
+
+
+            <h3>
+                How I approached it
+            </h3>
+
+
+            <div class="project-description">
+
+                {{ project.solution|linebreaks }}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- CHALLENGES -->
+
+        {% if project.challenges %}
+
+        <div class="project-story-block">
+
+            <p class="section-label">
+                CHALLENGES
+            </p>
+
+
+            <h3>
+                Problems worth solving
+            </h3>
+
+
+            <div class="project-description">
+
+                {{ project.challenges|linebreaks }}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+
+        <!-- FEATURES -->
+
+        {% if features %}
+
+        <div class="project-story-block">
+
+            <p class="section-label">
+                KEY FEATURES
+            </p>
+
+
+            <h3>
+                What was built
+            </h3>
+
+
+            <div class="feature-list">
+
+                {% for feature in features %}
+
+                <div class="feature-item">
+
+                    <span class="feature-check">
+
+                        <i class="fa-solid fa-check"></i>
+
+                    </span>
+
+
+                    <span>
+                        {{ feature }}
+                    </span>
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+
+    <!-- =================================================
+         SIDEBAR
+    ================================================== -->
+
+    <aside class="project-sidebar">
+
+
+        <!-- PROJECT SUMMARY -->
+
+        <div class="project-meta-card">
+
+            <div class="meta-item">
+
+                <span>
+                    Project Type
+                </span>
+
+                <strong>
+
+                    {% if project.category %}
+                        {{ project.category }}
+                    {% else %}
+                        Web Development
+                    {% endif %}
+
+                </strong>
+
+            </div>
+
+
+            <div class="meta-item">
+
+                <span>
+                    Pages
+                </span>
+
+                <strong>
+                    {{ project.pages }}
+                </strong>
+
+            </div>
+
+
+            {% if project.cost and project.show_cost %}
+
+            <div class="meta-item">
+
+                <span>
+                    Project Cost
+                </span>
+
+                <strong>
+                    KSh {{ project.cost|floatformat:0 }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if project.duration %}
+
+            <div class="meta-item">
+
+                <span>
+                    Duration
+                </span>
+
+                <strong>
+                    {{ project.duration }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if project.role %}
+
+            <div class="meta-item">
+
+                <span>
+                    My Role
+                </span>
+
+                <strong>
+                    {{ project.role }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+
+            {% if project.completed_date %}
+
+            <div class="meta-item">
+
+                <span>
+                    Completed
+                </span>
+
+                <strong>
+                    {{ project.completed_date|date:"F Y" }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- TECHNOLOGIES -->
+
+        <div class="project-meta-card">
+
+            <div class="meta-item">
+
+                <span>
+                    Technologies
+                </span>
+
+
+                <div class="detail-technologies">
+
+                    {% for technology in technologies %}
+
+                    <span>
+                        {{ technology }}
+                    </span>
+
+                    {% endfor %}
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- CTA -->
+
+        <div class="project-sidebar-cta">
+
+            <p class="section-label">
+                LIKE THIS?
+            </p>
+
+
+            <h3>
+                Need something similar?
+            </h3>
+
+
+            <p>
+                Let's discuss your requirements and
+                build a solution around your business.
+            </p>
+
+
+            <a
+                href="{% url 'core:home' %}#contact"
+                class="btn btn-primary"
+                aria-label="Start a project with Calvin Ochieng"
+            >
+
+                Start a Project
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </aside>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     GALLERY
+===================================================== -->
+
+{% if project.gallery.exists %}
+
+<section class="section project-gallery-section">
+
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="section-label">
+                PROJECT GALLERY
+            </p>
+
+
+            <h2>
+                Behind the
+                <span>build.</span>
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="project-gallery">
+
+        {% for gallery_image in project.gallery.all %}
+
+        <figure class="gallery-item">
+
+            <img
+                src="{{ gallery_image.image.url }}"
+                alt="{{ gallery_image.caption|default:project.title }} - Project screenshot by Calvin Ochieng"
+                loading="lazy"
+            >
+
+
+            {% if gallery_image.caption %}
+
+            <figcaption>
+                {{ gallery_image.caption }}
+            </figcaption>
+
+            {% endif %}
+
+        </figure>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</section>
+
+{% endif %}
+
+<!-- =====================================================
+     FINAL CTA
+===================================================== -->
+
+<section class="project-detail-footer">
+
+<div class="container">
+
+    <p>
+        Interested in working together?
+    </p>
+
+
+    <h2>
+        Let's build your
+        <span>next project.</span>
+    </h2>
+
+
+    <a
+        href="{% url 'core:home' %}#contact"
+        class="btn btn-light"
+        aria-label="Get in touch with Calvin Ochieng"
+    >
+
+        Get In Touch
+
+        <i class="fa-solid fa-arrow-right"></i>
+
+    </a>
+
+</div>
+
+
+</section>
+
+{% endblock %}

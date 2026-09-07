@@ -1,0 +1,1061 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Calvin Ochieng | Software Developer in Kenya | Django & Web Development
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section class="hero" id="home">
+
+
+<div class="container">
+
+    <div class="hero-grid">
+
+        <div class="hero-content">
+
+            <div class="availability">
+                <span class="availability-dot"></span>
+                Available for new projects
+            </div>
+
+            <p class="hero-label">
+                SOFTWARE DEVELOPER & WEB DEVELOPMENT
+            </p>
+
+            <h1>
+                I build digital
+                <span>experiences</span>
+                that work.
+            </h1>
+
+            <p class="hero-description">
+                I design and develop professional websites,
+                e-commerce platforms and custom web
+                applications for businesses and organizations
+                in Kenya and beyond.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="#projects" class="btn btn-primary">
+                    View My Work
+                    <i class="fa-solid fa-arrow-right"></i>
+                </a>
+
+                <a href="#contact" class="btn btn-secondary">
+                    Let's Work Together
+                </a>
+
+            </div>
+
+            <div class="hero-tech">
+
+                <span>Python</span>
+                <span>Django</span>
+                <span>JavaScript</span>
+                <span>SQL</span>
+                <span>HTML</span>
+                <span>CSS</span>
+
+            </div>
+
+        </div>
+
+
+        <!-- HERO VISUAL -->
+
+        <div class="hero-visual">
+
+            <div class="code-window">
+
+                <div class="code-window-header">
+
+                    <div class="window-dots">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+
+                    <span>developer.py</span>
+
+                </div>
+
+                <div class="code-content">
+
+                    <p>
+                        <span class="code-purple">class</span>
+                        Developer:
+                    </p>
+
+                    <p class="indent">
+                        <span class="code-purple">def</span>
+                        build(self):
+                    </p>
+
+                    <p class="double-indent">
+                        <span class="code-purple">return</span>
+                        <span class="code-green">
+                            "Digital Solutions"
+                        </span>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-card-one">
+
+                <i class="fa-solid fa-code"></i>
+
+                <div>
+                    <strong>Web Applications</strong>
+                    <span>Built for real businesses</span>
+                </div>
+
+            </div>
+
+
+            <div class="floating-card floating-card-two">
+
+                <i class="fa-solid fa-layer-group"></i>
+
+                <div>
+                    <strong>Django Development</strong>
+                    <span>Powerful backend systems</span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- HERO STATS -->
+
+    <div class="hero-stats">
+
+        <div>
+            <strong>20+</strong>
+            <span>Technologies & Tools</span>
+        </div>
+
+        <div>
+            <strong>10+</strong>
+            <span>Projects Built</span>
+        </div>
+
+        <div>
+            <strong>100%</strong>
+            <span>Commitment</span>
+        </div>
+
+        <div>
+            <strong>24/7</strong>
+            <span>Digital Solutions</span>
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     SERVICES
+===================================================== -->
+
+<section class="section services-section" id="services">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="section-label">
+                WEB DEVELOPMENT SERVICES
+            </p>
+
+            <h2>
+                Digital solutions
+                <span>built around your business.</span>
+            </h2>
+
+        </div>
+
+        <p>
+            Professional website development, e-commerce
+            development and custom software solutions
+            designed around real business requirements.
+        </p>
+
+    </div>
+
+
+    <div class="services-grid">
+
+        {% for service in services %}
+
+        <article class="service-card">
+
+            <div class="service-number">
+                0{{ forloop.counter }}
+            </div>
+
+            <div class="service-icon">
+                {% if forloop.counter == 1 %}
+                    <i class="fa-solid fa-globe"></i>
+                {% elif forloop.counter == 2 %}
+                    <i class="fa-solid fa-cart-shopping"></i>
+                {% elif forloop.counter == 3 %}
+                    <i class="fa-solid fa-code"></i>
+                {% elif forloop.counter == 4 %}
+                    <i class="fa-solid fa-database"></i>
+                {% else %}
+                    <i class="fa-solid fa-laptop-code"></i>
+                {% endif %}
+            </div>
+
+            <h3>
+                {{ service.name }}
+            </h3>
+
+            <p>
+                {{ service.short_description }}
+            </p>
+
+            {% if service.starting_price %}
+
+            <div class="service-price">
+
+                <span>
+                    {{ service.price_label }}
+                </span>
+
+                <strong>
+                    KSh {{ service.starting_price|floatformat:0 }}
+                </strong>
+
+            </div>
+
+            {% endif %}
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-state">
+
+            <h3>
+                Web Development Services
+            </h3>
+
+            <p>
+                Professional websites, e-commerce platforms
+                and custom web applications.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     FEATURED PROJECTS
+===================================================== -->
+
+<section class="section projects-section" id="projects">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="section-label">
+                WEB DEVELOPMENT PROJECTS
+            </p>
+
+            <h2>
+                Projects I've
+                <span>built.</span>
+            </h2>
+
+        </div>
+
+        <a href="{% url 'core:projects' %}" class="text-link">
+
+            View all projects
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+
+    <div class="projects-grid">
+
+        {% for project in featured_projects %}
+
+        <article class="project-card">
+
+            <div class="project-image">
+
+                {% if project.image %}
+
+                <img
+                    src="{{ project.image.url }}"
+                    alt="{{ project.title }} - {{ project.category|default:'Web Development Project' }} by Calvin Ochieng"
+                    loading="lazy"
+                >
+
+                {% else %}
+
+                <div class="project-placeholder">
+
+                    <i class="fa-solid fa-code"></i>
+
+                    <span>
+                        {{ project.title }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if project.category %}
+
+                <span class="project-category-badge">
+                    {{ project.category }}
+                </span>
+
+                {% endif %}
+
+            </div>
+
+
+            <div class="project-content">
+
+                <p class="project-category">
+
+                    {% if project.category %}
+                        {{ project.category }}
+                    {% else %}
+                        Software Development
+                    {% endif %}
+
+                </p>
+
+                <h3>
+                    {{ project.title }}
+                </h3>
+
+                <p>
+                    {{ project.short_description }}
+                </p>
+
+
+                <!-- PROJECT INFORMATION -->
+
+                <div class="project-mini-stats">
+
+                    <div>
+
+                        <span>
+                            Pages
+                        </span>
+
+                        <strong>
+                            {{ project.pages }}
+                        </strong>
+
+                    </div>
+
+
+                    {% if project.cost and project.show_cost %}
+
+                    <div>
+
+                        <span>
+                            Cost
+                        </span>
+
+                        <strong>
+                            KSh {{ project.cost|floatformat:0 }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if project.duration %}
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+                            {{ project.duration }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- TECHNOLOGIES -->
+
+                {% if project.technologies %}
+
+                <div class="technology-list">
+
+                    <span>
+                        {{ project.technologies }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <!-- PROJECT LINK -->
+
+                <div class="project-card-footer">
+
+                    <a
+                        href="{% url 'core:project_detail' project.slug %}"
+                        class="text-link"
+                        aria-label="View case study for {{ project.title }}"
+                    >
+
+                        View Case Study
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </article>
+
+        {% empty %}
+
+        <div class="empty-projects">
+
+            <i class="fa-solid fa-folder-open"></i>
+
+            <h3>
+                Web Development Projects
+            </h3>
+
+            <p>
+                Explore websites, e-commerce platforms
+                and custom software applications developed
+                by Calvin Ochieng.
+            </p>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+</section>
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section class="section about-section" id="about">
+
+<div class="container">
+
+    <div class="about-grid">
+
+
+        <!-- PROFILE PHOTO -->
+
+        <div class="about-image">
+
+            {% if profile and profile.photo %}
+
+            <img
+                src="{{ profile.photo.url }}"
+                alt="{{ profile.name }} - Software Developer and Web Developer in Kenya"
+                loading="lazy"
+            >
+
+            {% else %}
+
+            <div class="about-photo-placeholder">
+
+                <i class="fa-solid fa-user"></i>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- ABOUT CONTENT -->
+
+        <div class="about-content">
+
+            <p class="section-label">
+                ABOUT THE DEVELOPER
+            </p>
+
+            <h2>
+                Building technology
+                <span>with purpose.</span>
+            </h2>
+
+
+            {% if profile and profile.short_bio %}
+
+            <div class="about-description">
+
+                {{ profile.short_bio|linebreaks }}
+
+            </div>
+
+            {% else %}
+
+            <p>
+                I am a software developer in Kenya focused
+                on building professional websites, e-commerce
+                platforms, custom web applications and
+                practical digital solutions for businesses
+                and organizations.
+            </p>
+
+            {% endif %}
+
+
+            {% if profile %}
+
+            <div class="about-contact-info">
+
+                {% if profile.location %}
+
+                <div>
+
+                    <i class="fa-solid fa-location-dot"></i>
+
+                    <span>
+                        {{ profile.location }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                {% if profile.email %}
+
+                <div>
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>
+                        {{ profile.email }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+
+            <a href="#contact" class="btn btn-primary">
+
+                Let's Work Together
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     SKILLS
+===================================================== -->
+
+<section class="section skills-section" id="skills">
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="section-label">
+                WEB DEVELOPMENT TECHNOLOGIES
+            </p>
+
+            <h2>
+                Tools I use to
+                <span>build.</span>
+            </h2>
+
+        </div>
+
+    </div>
+
+
+    <div class="skills-grid">
+
+        {% for skill in skills %}
+
+        <div class="skill-item">
+
+            <div class="skill-header">
+
+                <span>
+                    {{ skill.name }}
+                </span>
+
+                <span>
+                    {{ skill.proficiency }}%
+                </span>
+
+            </div>
+
+            <div class="skill-bar">
+
+                <div
+                    class="skill-progress"
+                    style="width: {{ skill.proficiency }}%;"
+                ></div>
+
+            </div>
+
+        </div>
+
+        {% empty %}
+
+        <p>
+            Python, Django, JavaScript, SQL, HTML and CSS
+            are among the technologies used to build
+            modern web applications.
+        </p>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     PRICING / RATES
+===================================================== -->
+
+<section class="section pricing-section" id="pricing">
+
+
+<div class="container">
+
+    <div class="section-heading">
+
+        <div>
+
+            <p class="section-label">
+                WEB DEVELOPMENT RATES
+            </p>
+
+            <h2>
+                Simple,
+                <span>transparent rates.</span>
+            </h2>
+
+        </div>
+
+        <p>
+            Every website and software project is different.
+            These starting prices provide a guide, with the
+            final quote based on your exact requirements.
+        </p>
+
+    </div>
+
+
+    <div class="pricing-grid">
+
+        {% for service in services|slice:":3" %}
+
+        <div class="pricing-card">
+
+            {% if service.featured %}
+
+            <span class="pricing-featured">
+                Popular
+            </span>
+
+            {% endif %}
+
+            <h3>
+                {{ service.name }}
+            </h3>
+
+            <p>
+                {{ service.short_description }}
+            </p>
+
+            <div class="pricing-price">
+
+                <small>
+                    {{ service.price_label }}
+                </small>
+
+                <strong>
+                    KSh {{ service.starting_price|floatformat:0 }}
+                </strong>
+
+            </div>
+
+            <a href="#contact" class="btn btn-secondary">
+
+                Discuss Project
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     CONTACT
+===================================================== -->
+
+<section class="section contact-section" id="contact">
+
+<div class="container">
+
+    <div class="contact-grid">
+
+
+        <!-- CONTACT INTRO -->
+
+        <div class="contact-intro">
+
+            <p class="section-label">
+                CONTACT SOFTWARE DEVELOPER
+            </p>
+
+            <h2>
+                Have a project
+                <span>in mind?</span>
+            </h2>
+
+            <p>
+                Looking for a professional website, e-commerce
+                platform or custom web application? Tell me
+                what you are looking to build, improve or
+                automate and I'll get back to you with the
+                next steps.
+            </p>
+
+
+            {% if profile %}
+
+            <div class="contact-details">
+
+                {% if profile.email %}
+
+                <a href="mailto:{{ profile.email }}">
+
+                    <i class="fa-solid fa-envelope"></i>
+
+                    <span>
+                        {{ profile.email }}
+                    </span>
+
+                </a>
+
+                {% endif %}
+
+
+                {% if profile.phone %}
+
+                <a href="tel:{{ profile.phone }}">
+
+                    <i class="fa-solid fa-phone"></i>
+
+                    <span>
+                        {{ profile.phone }}
+                    </span>
+
+                </a>
+
+                {% endif %}
+
+
+                {% if profile.github_url %}
+
+                <a
+                    href="{{ profile.github_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <i class="fa-brands fa-github"></i>
+
+                    <span>
+                        GitHub
+                    </span>
+
+                </a>
+
+                {% endif %}
+
+
+                {% if profile.linkedin_url %}
+
+                <a
+                    href="{{ profile.linkedin_url }}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+
+                    <i class="fa-brands fa-linkedin"></i>
+
+                    <span>
+                        LinkedIn
+                    </span>
+
+                </a>
+
+                {% endif %}
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+
+        <!-- CONTACT FORM -->
+
+        <div class="contact-form-wrapper">
+
+            <form
+                method="POST"
+                class="contact-form"
+            >
+
+                {% csrf_token %}
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="name">
+                            Your Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="name"
+                            name="name"
+                            placeholder="John Doe"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="email">
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            id="email"
+                            name="email"
+                            placeholder="john@example.com"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-row">
+
+                    <div class="form-group">
+
+                        <label for="phone">
+                            Phone
+                        </label>
+
+                        <input
+                            type="text"
+                            id="phone"
+                            name="phone"
+                            placeholder="+254..."
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="service">
+                            Service
+                        </label>
+
+                        <select
+                            id="service"
+                            name="service"
+                        >
+
+                            <option value="">
+                                Select a service
+                            </option>
+
+                            {% for service in services %}
+
+                            <option value="{{ service.name }}">
+                                {{ service.name }}
+                            </option>
+
+                            {% endfor %}
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="budget">
+                        Estimated Budget
+                    </label>
+
+                    <select
+                        id="budget"
+                        name="budget"
+                    >
+
+                        <option value="">
+                            Select your budget
+                        </option>
+
+                        <option value="Below KSh 30,000">
+                            Below KSh 30,000
+                        </option>
+
+                        <option value="KSh 30,000 - 60,000">
+                            KSh 30,000 - 60,000
+                        </option>
+
+                        <option value="KSh 60,000 - 100,000">
+                            KSh 60,000 - 100,000
+                        </option>
+
+                        <option value="KSh 100,000+">
+                            KSh 100,000+
+                        </option>
+
+                        <option value="Not sure yet">
+                            Not sure yet
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Tell me about your project
+                    </label>
+
+                    <textarea
+                        id="message"
+                        name="message"
+                        rows="6"
+                        placeholder="Tell me what you would like to build..."
+                        required
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="btn btn-primary form-submit"
+                >
+
+                    Send Message
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+</section>
+
+{% endblock %}

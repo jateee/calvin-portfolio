@@ -1,0 +1,374 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Projects | Calvin Ochieng | Web Development & Software Projects in Kenya
+{% endblock %}
+
+{% block og_title %}
+Projects | Calvin Ochieng | Web Development & Software Projects in Kenya
+{% endblock %}
+
+{% block twitter_title %}
+Projects | Calvin Ochieng | Web Development & Software Projects in Kenya
+{% endblock %}
+
+{% block content %}
+
+<!-- =====================================================
+     PAGE HERO
+===================================================== -->
+
+<section class="page-hero">
+
+<div class="container">
+
+    <p class="section-label">
+        WEB DEVELOPMENT PROJECTS
+    </p>
+
+    <h1>
+        Projects I've
+        <span>built.</span>
+    </h1>
+
+    <p>
+        Explore a selection of professional websites,
+        e-commerce platforms, Django applications and
+        custom software solutions designed and developed
+        by Calvin Ochieng.
+    </p>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     PROJECTS
+===================================================== -->
+
+<section class="section all-projects-section">
+
+
+<div class="container">
+
+    <div class="projects-header">
+
+        <div>
+
+            <span class="project-count">
+                {{ projects|length }}
+            </span>
+
+            <span class="project-count-label">
+                Projects
+            </span>
+
+        </div>
+
+        <a
+            href="{% url 'core:home' %}"
+            class="text-link"
+            aria-label="Return to Calvin Ochieng homepage"
+        >
+            Back home
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+
+    <div class="all-projects-grid">
+
+        {% for project in projects %}
+
+        <article class="large-project-card">
+
+            <!-- IMAGE -->
+
+            <div class="large-project-image">
+
+                {% if project.image %}
+
+                <img
+                    src="{{ project.image.url }}"
+                    alt="{{ project.title }} - {{ project.category|default:'Web Development Project' }} by Calvin Ochieng"
+                    loading="lazy"
+                >
+
+                {% else %}
+
+                <div class="project-placeholder">
+
+                    <i class="fa-solid fa-code"></i>
+
+                    <span>
+                        {{ project.title }}
+                    </span>
+
+                </div>
+
+                {% endif %}
+
+
+                <div class="project-card-badge">
+
+                    {% if project.category %}
+                        {{ project.category }}
+                    {% else %}
+                        Web Development
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTENT -->
+
+            <div class="large-project-content">
+
+                <div class="large-project-top">
+
+                    <div>
+
+                        <p class="project-category">
+
+                            {% if project.category %}
+                                {{ project.category }}
+                            {% else %}
+                                Software Development
+                            {% endif %}
+
+                        </p>
+
+                        <h2>
+                            {{ project.title }}
+                        </h2>
+
+                    </div>
+
+
+                    {% if project.featured %}
+
+                    <span class="featured-label">
+                        Featured
+                    </span>
+
+                    {% endif %}
+
+                </div>
+
+
+                <p class="large-project-description">
+                    {{ project.short_description }}
+                </p>
+
+
+                <!-- PROJECT STATS -->
+
+                <div class="project-mini-stats">
+
+                    <div>
+
+                        <span>
+                            Pages
+                        </span>
+
+                        <strong>
+                            {{ project.pages }}
+                        </strong>
+
+                    </div>
+
+
+                    {% if project.cost and project.show_cost %}
+
+                    <div>
+
+                        <span>
+                            Cost
+                        </span>
+
+                        <strong>
+                            KSh {{ project.cost|floatformat:0 }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    {% if project.duration %}
+
+                    <div>
+
+                        <span>
+                            Duration
+                        </span>
+
+                        <strong>
+                            {{ project.duration }}
+                        </strong>
+
+                    </div>
+
+                    {% endif %}
+
+                </div>
+
+
+                <!-- TECHNOLOGIES -->
+
+                <div class="technology-list">
+
+                    {% for technology in project.technologies|cut:" "|slice:":0" %}
+                    {% endfor %}
+
+                    <span>
+                        {{ project.technologies }}
+                    </span>
+
+                </div>
+
+
+                <!-- ACTIONS -->
+
+                <div class="large-project-footer">
+
+                    <a
+                        href="{% url 'core:project_detail' project.slug %}"
+                        class="btn btn-primary"
+                        aria-label="View case study for {{ project.title }}"
+                    >
+
+                        View Case Study
+
+                        <i class="fa-solid fa-arrow-right"></i>
+
+                    </a>
+
+
+                    {% if project.github_url %}
+
+                    <a
+                        href="{{ project.github_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-external-link"
+                        aria-label="View {{ project.title }} source code on GitHub"
+                    >
+
+                        <i class="fa-brands fa-github"></i>
+
+                        GitHub
+
+                    </a>
+
+                    {% endif %}
+
+
+                    {% if project.live_url %}
+
+                    <a
+                        href="{{ project.live_url }}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="project-external-link"
+                        aria-label="Visit {{ project.title }} live website"
+                    >
+
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+
+                        Live Site
+
+                    </a>
+
+                    {% endif %}
+
+                </div>
+
+            </div>
+
+        </article>
+
+
+        {% empty %}
+
+        <div class="empty-projects">
+
+            <i class="fa-solid fa-folder-open"></i>
+
+            <h2>
+                No projects yet
+            </h2>
+
+            <p>
+                Add your web development projects through
+                Django Admin and they will appear here.
+            </p>
+
+            <a
+                href="/admin/core/project/add/"
+                class="btn btn-primary"
+                aria-label="Add your first portfolio project"
+            >
+                Add Your First Project
+            </a>
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</div>
+
+
+</section>
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="section project-cta">
+
+<div class="container">
+
+    <div class="simple-cta">
+
+        <div>
+
+            <p class="section-label">
+                HAVE A WEB PROJECT IDEA?
+            </p>
+
+            <h2>
+                Let's turn your idea into
+                <span>reality.</span>
+            </h2>
+
+        </div>
+
+
+        <a
+            href="{% url 'core:home' %}#contact"
+            class="btn btn-primary"
+            aria-label="Start a web development project with Calvin Ochieng"
+        >
+
+            Start a Project
+
+            <i class="fa-solid fa-arrow-right"></i>
+
+        </a>
+
+    </div>
+
+</div>
+
+</section>
+
+{% endblock %}
